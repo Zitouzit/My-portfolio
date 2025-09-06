@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon portfolio </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            scroll-behavior: smooth;
+            background-color: white;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: burlywood;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        section {
+            padding: 5rem 5%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--primary-color);
+        }
+        
+        #accueil {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://placehold.co/1920x1080') no-repeat center center/cover;
+            color: whitesmoke;
+            text-align: center;
+        }
+        
+        #accueil h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        #accueil p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: background 0.3s;
+            margin: 0.5rem;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+        }
+        
+        #apropos {
+            background-color: var(--light-color);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .about-img {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .about-text {
+            flex: 2;
+        }
+        
+        .skills-container, .techs-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .skill, .tech {
+            background: whitesmoke;
+            padding: 1.5rem;
+            border-radius: 10px;
+
+box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .skill:hover, .tech:hover {
+            transform: translateY(-5px);
+        }
+        
+        .skill i, .tech i {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            justify-content: center;
+        }
+        
+        .project {
+            background: whitesmoke;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+        
+        .project:hover {
+            transform: translateY(-5px);
+        }
+        
+        .project-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .project:hover .project-img img {
+            transform: scale(1.1);
+        }
+        
+        .project-info {
+            padding: 1.5rem;
+        }
+        
+        .project-tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        .tool-tag {
+            background: var(--light-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline-item {
+            padding: 1rem 0;
+            border-left: 2px solid var(--secondary-color);
+            position: relative;
+            padding-left: 2rem;
+            margin-left: 1rem;
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+        
+        .timeline-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .education-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+        }
+        
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .form-group label {
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .error {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            display: none;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: rgb(134, 138, 144);
+            padding: 3rem 5%;
+        }
+        
+        .footer-content {
+            display: grid;
+
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: #dddddd0c;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: rgb(39, 141, 219);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .about-content, .contact-container {
+                flex-direction: column;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">MAKOUGANG ZITA FLORE</div>
+            <ul class="nav-links">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#apropos">À propos</a></li>
+                <li><a href="#competences">Compétences</a></li>
+                <li><a href="#projets">Projets</a></li>
+                <li><a href="#education">Éducation</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="accueil">
+            <h1>Salut, je suis Makougang Zita Flore, développeur web en devenir. </h1>
+            <p>Je suis développeur web en formation et étudiante en informatique à l’Université de Yaoundé 1 en licence.</p>
+            <div>
+                <a href="#contact" class="btn">ME CONTACTER</a>
+                <a href="#projets" class="btn">MES TRAVAUX</a>
+                <a href="#apropos" class="btn">QUI JE SUIS</a>
+            </div>
+        </section>
+        
+        <section id="apropos">
+            <h2>A propos</h2>
+            <div class="about-content">
+                <div class="about-img">
+                    <img src="zita.jpg " alt="Photo de Zita">
+                </div>
+                <div class="about-text">
+                    <p>Je m’appelle MAKOUGANG, passionnée par la création de sites web modernes et interactifs. Je suis actuellement étudiante en informatique niveau 3 (licence), je suis aussi une formation en developpement web et je cherche à améliorer mes compétences en JavaScript ; HTML et CSS. J’adore transformer mes idées en projets concrets, j'aime relever de nouveaux défis et apprendre constamment de nouvelles technologies.</p>
+                    <p>Mon objectif est de créer des expériences numériques à la fois esthétiques et fonctionnelles qui répondent parfaitement aux besoins des utilisateurs.</p>
+                    <p>Je suis actuellement à la recherche de nouvelles opportunités professionnelles stimulantes où je pourrais mettre à profit mes compétences et continuer à me développer.</p>
+                </div>
+                <a href="CV_MAKOUGANG_ZITA_FLORE.pdf" class="btn">Télécharger mon CV</a>
+            </div>
+        </section>
+        
+        <section id="competences">
+            <h2>Mes Compétences</h2>
+            <div class="skills-container">
+                <div class="skill">
+                    <i class="fab fa-html5"></i>
+                    <h3>HTML/CSS</h3>
+                    <p>Création de sites web responsives et accessibles avec un code propre et bien structuré.</p>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-js"></i>
+                    <h3>JavaScript</h3>
+                    <p>Développement d'applications interactives et dynamiques avec les technologies modernes.</p>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-python"></i>
+                    <h3>Python & Django</h3>
+                    <p>Développement backend avec Python.</p>
+                </div>
+                <div class="skill">
+                    <h3>Travail en équipe</h3>
+                </div>
+                <div class="skill">
+                    <h3>Créativité</h3>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 3rem; text-align: center;">Top Technologies</h3>
+            <div class="techs-container">
+                <div class="tech">
+                    <i class="fab fa-python"></i>
+                    <h3>Python</h3>
+                </div>
+                <div class="tech">
+                    <i class="fab fa-js"></i>
+                    <h3>JavaScript</h3>
+                </div>
+            </div>
+        </section>
+        
+        <section id="projets">
+            <h2>Mes Projets</h2>
+            <div class="projects-container">
+                <div class="project">
+                    <div class="project-img">
+                        <img src="portfolio.PNG" alt="Projet My Portfolio">
+                    </div>
+                    <div class="project-info">
+                        <h3>My Portfolio</h3>
+                        <div class="project-tools">
+                            <span class="tool-tag">JavaScript</span>
+                            <span class="tool-tag">CSS</span>
+                            <span class="tool-tag">HTML</span>
+                            <span class="tool-tag">Git</span>
+                            <span class="tool-tag">Github</span>
+                            <span class="tool-tag">Github Actions</span>
+                        </div>
+                        <p>Mon portfolio personnel (ce site). Développé avec JavaScript, CSS, et HTML.</p>
+                        <a href="https://.com" class="btn" target="_blank">Voir le projet</a>
+                    </div>
+                </div>
+                <div class="project">
+                    <div class="project-img">
+                        <img src="automate.PNG" width="300" height="'400" alt="Projet Automates">
+                    </div>
+                    <div class="project-info">
+                    <h3>Création d'une Application web de gestion des opérations sur les automates finis avec un groupe de personnes</h3>
+                        <div class="project-tools">
+                            <span class="tool-tag">html</span>
+                            <span class="tool-tag">css</span>
+                            <span class="tool-tag">js</span>
+                            <span class="tool-tag">Python</span>
+                        </div>
+                        <p>Application développée dans le cadre de la formation à l'Université de Yaoundé 1. Implémentation frontend avec HTML, CSS et JavaScript et backend avec python.</p>
+                        <a href="https://automateapp.onrender.com/automates/" class="btn" target="_blank">Voir le projet</a>
+                </div>
+                <div class="project">
+                    <div class="project-img">
+                        <img src="calculateur.PNG" alt="calculatrice de prêt hypothécaire">
+                    </div>
+                    <div class="project-info">
+                    <h3>Création d'une Application de calcul de pret hypothécaire</h3>
+                        <div class="project-tools">
+                            <span class="tool-tag">html</span>
+                            <span class="tool-tag">css</span>
+                            <span class="tool-tag">js</span>
+                        </div>
+                        <p>Application développée dans le cadre de la formation D-CLIC. Implémentation avec HTML, CSS et JavaScript.</p>
+                        <a href="" class="btn" target="_blank">Voir le projet</a>
+                </div>
+            </div>
+        </section>
+        
+        <section id="education">
+            <h2>Formation</h2>
+            <div class="education-list">
+                <div class="education-item">
+                    <h3>Depuis Septembre 2025</h3>
+                    <p><strong>LICENCE EN SECURITE INFORMATIQUE</strong></p>
+                    <p>Université de Yaoundé 1</p>
+                </div>
+                
+                <div class="education-item">
+                    <h3>Jusqu'à Septembre 2020</h3>
+                    <p><strong>BACCALAURÉAT</strong></p>
+                    <p>Collège Jésus-Marie de Yaoundé</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact">
+            <h2>Contactez-moi</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>zita.makougang@facsciences-uy1.cm</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+237 656645401/ 658775762/ 674251691</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Yaoundé, Cameroun</span>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="https://facebook.com/zitaflore.makougang"><i class="fab fa-facebook"></i></a>
+                        <a href="#@rose_ginger237"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Nom</label>
+                        <input type="text" id="name" name="name" placeholder="Entrez votre nom" required>
+                        <div class="error" id="nameError">Veuillez entrer votre nom</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Entrez votre email" required>
+                        <div class="error" id="emailError">Veuillez entrer un email valide</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder=" Rédigez votre message ici" required></textarea>
+                        <div class="error" id="messageError">Veuillez entrer votre message</div>
+                    </div>
+                    <button type="submit" class="btn">Envoyer</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Makougang Zita Flore</h3>
+                <p>Développeur passionné créant des solutions numériques innovantes.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Liens Rapides</h3>
+                <ul class="footer-links">
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#apropos">À propos</a></li>
+                    <li><a href="#competences">Compétences</a></li>
+                    <li><a href="#projets">Projets</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>zita.makougang@facsciences-uy1.cm</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+237 656645401/658775762/674251691</span>
+                </div>
+                <div class="social-links">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="https://facebook.com/zitaflore.makougang"><i class="fab fa-facebook"></i></a>
+                        <a href="#@rose_ginger237"><i class="fab fa-instagram"></i></a>
+                    </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>Developed with love by @zitaflore</p>
+            <p>&copy; 2025. Tous droits réservés.</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            let isValid = true;
+            const name = document.getElementById('name');
+            const email = document.getElementById('email');
+            const message = document.getElementById('message');
+            
+            if (name.value.trim() === '') {
+                document.getElementById('nameError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('nameError').style.display = 'none';
+            }
+            
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email.value)) {
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            } else {
+
+document.getElementById('emailError').style.display = 'none';
+            }
+            
+            if (message.value.trim() === '') {
+                document.getElementById('messageError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('messageError').style.display = 'none';
+            }
+            
+            if (isValid) {
+                alert('Votre message a été envoyé avec succès !');
+                this.reset();
+            }
+        });
+        
+        window.addEventListener('scroll', function() {
+            const elements = document.querySelectorAll('.skill, .project, .tech, .timeline-item, .education-item');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = 1;
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        });
+        
+        document.querySelectorAll('.skill, .project, .tech, .timeline-item, .education-item').forEach(item => {
+            item.style.opacity = 0;
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        });
+    </script>
+</body>
+</html>
